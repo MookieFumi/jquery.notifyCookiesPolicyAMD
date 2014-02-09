@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RequireJS</title>
+    <script src="scripts/require.js"></script>
+    <script src="scripts/config.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        window.onload = function () {
+
+            requirejs.onResourceLoad = function (context, map, depArray) {
+            };
+
+            require(['logger'], function (logger) {
+                logger.log("Info !!!", "info");
+                logger.log("Warning !!!", "warning");
+                logger.log("Error !!!", "error");
+
+            });
+           
+            require(['jquery.notifyCookiesPolicy'], function () {
+                $.notifyCookiesPolicy({
+                    defaultText: "Utilizamos cookies propias y de terceros para mejorar nuestros servicios.",
+                    callbackToEnableGoogleAnalytics: function () {
+                        console.info("Enable Google Analytic");
+                    },
+                    cookiePolicy: {
+                        show: true,
+                        defaultText: "Ver política de cookies (custom)",
+                        callbackToShowCookiePolicy: function () {
+                            console.info("Show Cookie Policy Detail");
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
